@@ -8,7 +8,7 @@ export async function PUT(req: Request, { params }: { params: { email: string } 
     const body = await req.json();
     const { name, phone } = body;
 console.log("body", body);
-   if( !name || !phone){
+   if(!body || !name || !phone){
         return new NextResponse(JSON.stringify({ message: "Name and phone are required" }), { status: 400 });
     }
     const user = await prisma.user.findUnique({ where: { email: email } });
@@ -63,3 +63,5 @@ export async function DELETE(req: Request, { params }: { params: { email: string
     }
     return new NextResponse(JSON.stringify({ message: "User deleted successfully" }), { status: 200 });
 }
+
+
